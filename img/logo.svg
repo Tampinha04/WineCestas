@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 140" fill="none" aria-hidden="true">
+  <g stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M 24 16 C 28 14, 35 13, 42 14 Q 46 9, 50 12 Q 54 9, 58 14 C 65 13, 72 14, 76 16 C 78 22, 78 32, 75 42 Q 70 62, 50 68 Q 30 62, 25 42 C 22 32, 22 22, 24 16 Z"/>
+    <path d="M 50 68 Q 48 100, 50 122"/>
+    <path d="M 38 126 Q 50 132, 62 126"/>
+  </g>
+  <path d="M 50 60 C 30 48, 20 38, 28 28 C 36 22, 44 28, 50 38 C 56 28, 64 22, 72 28 C 80 38, 70 48, 50 60 Z" fill="#D43A3A"/>
+</svg>
