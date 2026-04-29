@@ -1700,41 +1700,57 @@ body.drawer-open{overflow:hidden}
   transform:translateX(6px);
 }
 
-/* Trust row */
-.final-trust{
+/* Trust pre — social proof acima do CTA (priming) */
+.final-trust-pre{
   display:inline-flex;
   align-items:center;
-  gap:24px;
-  padding:14px 28px;
+  gap:14px;
+  margin:0 auto 18px;
+  padding:11px 22px;
   border:1px solid rgba(255,255,255,.1);
-  border-radius:99px;
-  background:rgba(13,8,8,.42);
+  border-radius:999px;
+  background:rgba(255,255,255,.04);
   backdrop-filter:blur(10px);
-}
-.trust-item{
-  display:flex;
-  flex-direction:column;
-  align-items:center;
-  gap:3px;
-}
-.trust-item strong{
-  font-family:'Fraunces',serif;
-  font-size:18px;
-  font-weight:300;
-  color:var(--gold-light);
+  font-family:'Inter',sans-serif;
+  font-size:11px;
+  letter-spacing:.02em;
+  color:rgba(255,255,255,.86);
   line-height:1;
-  letter-spacing:-.01em;
 }
-.trust-item span{
-  font-size:9px;
-  letter-spacing:.24em;
-  text-transform:uppercase;
-  color:rgba(255,255,255,.55);
+.final-trust-pre .stars{
+  color:var(--gold-light);
+  letter-spacing:.08em;
+  font-size:13px;
+  line-height:1;
 }
-.trust-divider{
-  width:1px;
-  height:26px;
-  background:rgba(255,255,255,.12);
+.final-trust-pre strong{
+  color:var(--gold-light);
+  font-weight:700;
+}
+
+/* Garantia — reduz risco percebido depois do CTA */
+.final-guarantee{
+  display:inline-flex;
+  align-items:center;
+  gap:10px;
+  margin:18px auto 0;
+  padding:0 12px;
+  font-family:'Inter',sans-serif;
+  font-size:11px;
+  letter-spacing:.02em;
+  color:rgba(255,255,255,.72);
+  line-height:1.4;
+  text-align:left;
+}
+.final-guarantee svg{
+  width:18px;
+  height:18px;
+  color:var(--gold-light);
+  flex-shrink:0;
+}
+.final-guarantee strong{
+  color:#fff;
+  font-weight:700;
 }
 
 @media(max-width:768px){
@@ -1758,10 +1774,19 @@ body.drawer-open{overflow:hidden}
   .final-cta .cta-main{font-size:13px}
   .final-cta .cta-sub{font-size:10px}
   .final-cta .cta-arrow{font-size:18px;margin-left:auto}
-  .final-trust{gap:14px;padding:12px 18px}
-  .trust-item strong{font-size:15px}
-  .trust-item span{font-size:8px;letter-spacing:.2em}
-  .trust-divider{height:22px}
+  .final-trust-pre{
+    padding:9px 16px;
+    gap:10px;
+    font-size:10px;
+    margin-bottom:14px;
+  }
+  .final-trust-pre .stars{font-size:11px}
+  .final-guarantee{
+    font-size:10px;
+    margin-top:14px;
+    padding:0 6px;
+  }
+  .final-guarantee svg{width:16px;height:16px}
 }
 
 .safety-strip{
@@ -3045,4 +3070,438 @@ body.order-open .wa-float{
 /* reduce motion */
 @media (prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms!important;animation-iteration-count:1!important;transition-duration:.01ms!important}
+}
+
+/* ============================================================
+   ▼▼▼  MOBILE OPTIMIZATION LAYER  ▼▼▼
+   Camada final pra adaptação 100% responsiva
+   Princípios: thumb-friendly, legível, rápido, conversão first
+   ============================================================ */
+
+/* === TOUCH DEVICES — desliga cursor custom + ajustes universais === */
+@media (hover:none), (pointer:coarse){
+  html, body { cursor:auto !important; }
+  .cursor { display:none !important; }
+  /* Hover states viram active states */
+  *:hover { transition-duration:0s !important; }
+  /* iOS smooth scroll */
+  body { -webkit-overflow-scrolling:touch; }
+  /* Tap highlight sutil */
+  a, button, [role="button"] {
+    -webkit-tap-highlight-color:rgba(184,147,90,.18);
+    touch-action:manipulation;
+  }
+}
+
+/* === TABLET LANDSCAPE — 1100px === */
+@media (max-width:1100px){
+  .topbar{padding:16px 28px;gap:24px}
+  .topbar.scrolled{padding:11px 28px}
+  .prod-item{gap:42px}
+  .escolha-grid{grid-template-columns:repeat(2,1fr);gap:14px}
+  .complementares-grid{grid-template-columns:repeat(2,1fr)}
+}
+
+/* === TABLET PORTRAIT — 880px === */
+@media (max-width:880px){
+  /* Topbar: nav some, WhatsApp vira icon-only */
+  .topbar{padding:14px 22px;min-height:64px}
+  .topbar.scrolled{padding:11px 22px;min-height:56px}
+  .logo-wordmark{height:50px}
+  .topbar.scrolled .logo-wordmark{height:42px}
+
+  /* Prod-item vira coluna */
+  .prod-item{
+    grid-template-columns:1fr !important;
+    gap:32px;
+    padding:0 22px;
+  }
+  .prod-item.reverse .prod-visual{order:0}
+  .prod-info{padding:0;max-width:100%}
+
+  /* Final CTA: compacto */
+  .final{padding:90px 22px 80px}
+
+  /* Footer: stacked */
+  .foot-grid{grid-template-columns:1fr;gap:36px;text-align:center}
+  .foot-brand{justify-content:center}
+}
+
+/* === MOBILE PORTRAIT GRANDE — 680px === */
+@media (max-width:680px){
+  /* === FONTS BASE — escala otimizada pra mobile === */
+  html{font-size:15px}
+
+  /* === HERO: o mais importante — CTA visível sem scroll === */
+  .hero-content{padding:96px 20px 100px}
+  .hero-mark{margin:0 auto 22px}
+  .hero-mark img{height:88px;max-width:80vw}
+  .hero-kicker{
+    margin-bottom:18px;
+    font-size:9.5px;
+    letter-spacing:.36em;
+  }
+  .hero-headline{
+    font-size:clamp(30px,8.4vw,44px);
+    line-height:1.06;
+    margin-bottom:20px;
+    text-shadow:0 10px 26px rgba(0,0,0,.55);
+  }
+  .hero-cta{
+    margin-top:14px;
+    padding:16px 26px;
+    font-size:10.5px;
+    letter-spacing:.24em;
+    min-height:50px;
+    width:auto;
+  }
+  .hero-cta svg{width:14px;height:14px}
+
+  /* === SECTIONS: padding reduzido === */
+  .manifesto{padding:90px 20px 70px}
+  .manifesto-body{font-size:clamp(24px,7.2vw,34px);line-height:1.25}
+  .manifesto-quote{font-size:120px;left:-18px;top:-16px}
+  .manifesto-sign{
+    margin-top:28px;
+    flex-direction:column;
+    gap:10px;
+  }
+  .manifesto-sign-line{display:none}
+
+  .escolha{padding:80px 20px}
+  .escolha-head{margin-bottom:36px}
+  .escolha-head h2{font-size:clamp(34px,9vw,48px)}
+  .escolha-grid{grid-template-columns:1fr;gap:12px}
+  .choice{min-height:170px;padding:22px 20px 18px;border-radius:6px}
+  .choice::after{font-size:120px;bottom:-18px;right:-8px}
+  .choice .cnum{font-size:9.5px;letter-spacing:.26em}
+  .choice h3{font-size:22px}
+
+  .pressao{padding:60px 20px 36px}
+  .pressao h3{font-size:clamp(28px,8vw,38px)}
+
+  .produtos{padding:80px 0 50px}
+  .prod-intro{padding:0 20px;margin-bottom:46px;gap:18px}
+  .prod-intro h2{font-size:clamp(34px,9vw,48px)}
+  .prod-item{margin-bottom:60px;gap:22px;padding:0 20px}
+  .prod-visual img{border-radius:6px}
+  .prod-numbertag{font-size:80px;top:-12px;right:-4px}
+  .prod-tagline{font-size:9px;letter-spacing:.26em;top:14px;left:14px}
+  .prod-badge{font-size:9px;padding:6px 12px;letter-spacing:.18em}
+  .prod-name{font-size:clamp(28px,8.4vw,40px);line-height:1.04}
+  .prod-desc{font-size:16px;line-height:1.45}
+  .prod-meta{flex-wrap:wrap;gap:18px}
+  .prod-meta .price{font-size:32px}
+  .prod-cta{
+    width:100%;
+    padding:16px 22px;
+    font-size:11px;
+    letter-spacing:.22em;
+    min-height:54px;
+    justify-content:center;
+  }
+  .prod-info-toggle{
+    width:100%;
+    justify-content:space-between;
+    padding:14px 18px;
+    min-height:48px;
+    font-size:10px;
+  }
+
+  .complementares{padding:70px 20px 60px}
+  .complementares-head{margin-bottom:40px}
+  .complementares-head h2{font-size:clamp(30px,8vw,42px)}
+  .complementares-grid{grid-template-columns:1fr;gap:12px}
+
+  .social{padding:80px 20px 60px}
+  .social-head{margin-bottom:42px}
+  .social-head h2{font-size:clamp(30px,8.4vw,44px)}
+  .social-grid{grid-template-columns:1fr;gap:14px}
+  .testi{padding:24px 22px}
+  .social-stats{
+    grid-template-columns:repeat(2,1fr);
+    gap:16px;
+    margin-top:36px;
+  }
+
+  .impacto{padding:70px 20px;min-height:auto}
+  .impacto h2{font-size:clamp(34px,9vw,46px);line-height:1.05;margin-bottom:24px}
+  .impacto-sub{font-size:16px}
+
+  .urgencia{padding:80px 20px 60px}
+  .urgencia h2{font-size:clamp(30px,8vw,42px)}
+  .countdown{gap:8px}
+  .count-box{padding:14px 8px}
+  .count-num{font-size:28px}
+  .count-lbl{font-size:8px;letter-spacing:.2em}
+
+  /* === FINAL CTA — supremo foco === */
+  .final{padding:60px 20px 50px;min-height:auto}
+  .final-tag{margin-bottom:18px}
+  .final-tag .line{width:24px}
+  .final-tag .text{font-size:9px;letter-spacing:.28em}
+  .final-headline{font-size:clamp(30px,8.4vw,44px);margin-bottom:20px}
+  .final-p{font-size:16px;margin-bottom:22px;line-height:1.5}
+  .final-trust-pre{
+    flex-direction:column;
+    gap:6px;
+    padding:12px 16px;
+    font-size:10px;
+    margin-bottom:14px;
+    line-height:1.4;
+    text-align:center;
+  }
+  .final-scarcity{padding:12px 16px;margin-bottom:22px;border-radius:12px}
+  .scarcity-text{
+    font-size:9.5px;
+    letter-spacing:.16em;
+    line-height:1.35;
+    text-align:left;
+  }
+  .final-cta{
+    width:100%;
+    padding:14px 16px 14px 12px;
+    gap:12px;
+    border-radius:14px;
+    box-sizing:border-box;
+    min-height:64px;
+  }
+  .final-cta .cta-icon{width:46px;height:46px;border-radius:11px}
+  .final-cta .cta-icon svg{width:22px;height:22px}
+  .final-cta .cta-content{flex:1;min-width:0}
+  .final-cta .cta-main{font-size:13px;letter-spacing:.04em}
+  .final-cta .cta-sub{font-size:9.5px;letter-spacing:.02em}
+  .final-cta .cta-arrow{font-size:18px;flex-shrink:0}
+  .final-guarantee{
+    font-size:10.5px;
+    margin-top:14px;
+    line-height:1.45;
+    text-align:left;
+  }
+  .final-guarantee svg{width:18px;height:18px}
+
+  .safety-strip{padding:8px 20px 40px}
+  .safety-inner{
+    padding:18px 18px;
+    font-size:clamp(15px,4.6vw,18px);
+    border-radius:18px;
+    line-height:1.32;
+  }
+
+  /* === FOOTER === */
+  footer{padding:50px 20px 24px}
+  .foot-bottom{
+    flex-direction:column;
+    gap:8px;
+    text-align:center;
+    font-size:9.5px;
+    letter-spacing:.2em;
+  }
+
+  /* === STICKY CTA — sempre visível === */
+  .sticky-cta{
+    display:block;
+    background:linear-gradient(180deg, rgba(13,8,8,0), rgba(13,8,8,.96) 35%);
+    padding:22px 14px 14px;
+  }
+  .sticky-cta a{
+    width:100%;
+    min-height:54px;
+    padding:0 20px;
+    border-radius:14px;
+    font-size:12px;
+    letter-spacing:.18em;
+    box-shadow:0 18px 36px rgba(37,211,102,.32);
+  }
+  .sticky-cta .micro{font-size:8.5px;letter-spacing:.22em;margin-top:6px}
+
+  /* WhatsApp float esconde (sticky-cta cobre essa função) */
+  .wa-float{display:none}
+
+  /* Body padding pra não cortar conteúdo atrás do sticky */
+  body{padding-bottom:104px}
+
+  /* === TOPBAR drawer mobile === */
+  .topbar{padding:12px 18px;min-height:56px}
+  .topbar.scrolled{padding:10px 18px;min-height:50px}
+  .logo-wordmark{height:42px}
+  .topbar.scrolled .logo-wordmark{height:38px}
+  .topbar-drawer{padding:78px 26px 28px}
+
+  /* === MODAL — full-screen friendly === */
+  .order-modal{padding:0;align-items:flex-end}
+  .order-card{
+    width:100%;
+    max-width:100%;
+    max-height:92vh;
+    border-radius:24px 24px 0 0;
+    padding:28px 22px 32px;
+    overflow-y:auto;
+  }
+  .order-card h3{font-size:22px}
+  .order-card p{font-size:14px}
+  .order-card label{font-size:11px}
+  .order-card input,
+  .order-card textarea{
+    font-size:16px; /* iOS evita zoom-in com 16px+ */
+    padding:14px 16px;
+    min-height:48px;
+  }
+  .order-submit{
+    width:100%;
+    min-height:54px;
+    font-size:13px;
+    border-radius:14px;
+  }
+
+  /* === TOUCH TARGETS — mínimo 44px === */
+  .top-link,
+  .topbar-nav a,
+  .topbar-drawer a{
+    min-height:44px;
+    display:inline-flex;
+    align-items:center;
+  }
+  .topbar-menu{width:42px;height:42px}
+  .order-close{width:42px;height:42px;font-size:24px}
+
+  /* === BRIDGES menores em mobile === */
+  .bridge{height:60px}
+  .bridge-black-to-cream{height:90px}
+
+  /* === HEROS DE SEÇÕES — alinhados === */
+  .escolha-head h2,
+  .complementares-head h2,
+  .social-head h2,
+  .impacto h2,
+  .urgencia h2,
+  .final-headline,
+  .prod-intro h2{
+    text-wrap:balance;
+  }
+}
+
+/* === MOBILE PORTRAIT MÉDIO — 480px === */
+@media (max-width:480px){
+  html{font-size:14.5px}
+
+  .hero-content{padding:88px 18px 90px}
+  .hero-mark img{height:74px}
+  .hero-headline{font-size:clamp(28px,9vw,40px)}
+  .hero-cta{
+    padding:14px 22px;
+    font-size:10px;
+    letter-spacing:.2em;
+  }
+
+  /* Sections — padding minimal */
+  .manifesto{padding:70px 18px 60px}
+  .escolha{padding:64px 18px}
+  .pressao{padding:48px 18px 28px}
+  .produtos{padding:64px 0 40px}
+  .prod-intro{padding:0 18px}
+  .prod-item{padding:0 18px;margin-bottom:48px}
+  .complementares{padding:60px 18px 50px}
+  .social{padding:64px 18px 50px}
+  .impacto{padding:60px 18px}
+  .urgencia{padding:64px 18px 50px}
+  .final{padding:50px 18px 44px}
+  footer{padding:42px 18px 22px}
+
+  /* Cards menores ainda */
+  .choice{min-height:148px;padding:18px 16px 14px}
+  .choice h3{font-size:20px}
+  .choice::after{font-size:100px}
+
+  .testi{padding:20px 18px}
+  .testi-quote{font-size:15px}
+
+  .countdown{flex-wrap:wrap;justify-content:center}
+  .count-box{flex:1 1 calc(50% - 8px);min-width:0}
+
+  /* CTA fontes mínimas */
+  .prod-cta{font-size:10px;letter-spacing:.18em;padding:14px 18px}
+  .final-cta .cta-main{font-size:12px}
+  .final-cta .cta-sub{font-size:9px}
+}
+
+/* === MOBILE PORTRAIT PEQUENO — 360px === */
+@media (max-width:360px){
+  html{font-size:14px}
+  .hero-mark img{height:64px}
+  .hero-headline{font-size:clamp(26px,9vw,34px)}
+  .hero-cta{padding:13px 18px;letter-spacing:.16em}
+
+  .topbar{padding:10px 14px;min-height:52px}
+  .logo-wordmark{height:36px}
+  .sticky-cta{padding:18px 10px 12px}
+  .sticky-cta a{font-size:11px;letter-spacing:.14em;padding:0 14px}
+
+  .final-cta{padding:12px 14px 12px 10px;gap:10px}
+  .final-cta .cta-icon{width:42px;height:42px}
+  .final-cta .cta-main{font-size:11.5px;letter-spacing:.02em}
+  .final-cta .cta-sub{font-size:8.5px}
+}
+
+/* === LANDSCAPE em mobile pequeno (telas baixas) === */
+@media (max-width:900px) and (max-height:500px) and (orientation:landscape){
+  .hero{min-height:auto}
+  .hero-content{padding:74px 22px 36px}
+  .hero-mark img{height:54px}
+  .hero-mark{margin-bottom:14px}
+  .hero-headline{font-size:clamp(24px,5vw,36px);margin-bottom:14px}
+  .hero-kicker{margin-bottom:12px}
+  .hero-scroll-cue{display:none}
+  .sticky-cta{display:none}
+  body{padding-bottom:0}
+}
+
+/* === iOS SAFE AREAS (notch / home indicator) === */
+@supports(padding:max(0px)){
+  .topbar{
+    padding-left:max(22px, env(safe-area-inset-left));
+    padding-right:max(22px, env(safe-area-inset-right));
+  }
+  .sticky-cta{
+    padding-bottom:max(14px, env(safe-area-inset-bottom));
+  }
+  body{
+    padding-bottom:max(104px, calc(104px + env(safe-area-inset-bottom)));
+  }
+  @media (min-width:681px){
+    body{padding-bottom:0}
+  }
+}
+
+/* === HIGH DENSITY DISPLAYS — fontes mais nítidas === */
+@media (-webkit-min-device-pixel-ratio:2), (min-resolution:192dpi){
+  body{
+    -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
+  }
+}
+
+/* === IMAGENS RESPONSIVAS — proteção universal === */
+img, video{
+  max-width:100%;
+  height:auto;
+}
+
+/* Nunca cortar imagem das cestas em mobile */
+@media (max-width:680px){
+  .prod-visual{
+    aspect-ratio:4/5;
+    max-height:480px;
+  }
+  .prod-visual img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    object-position:center;
+  }
+}
+
+/* === ANIMAÇÕES — desativar parallax em mobile (performance) === */
+@media (max-width:768px){
+  .hero-bg{animation:none;transform:scale(1)}
 }

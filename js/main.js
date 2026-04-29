@@ -309,22 +309,26 @@ if(orderForm){
 }
 
 /* CURSOR */
+/* CURSOR custom — apenas em devices com mouse fino (desktop) */
 const cursor = document.getElementById('cursor');
-let mx=0,my=0,cx=0,cy=0;
-document.addEventListener('mousemove', e=>{mx=e.clientX;my=e.clientY});
-(function loop(){
-  cx += (mx-cx)*.22; cy += (my-cy)*.22;
-  if(cursor){
+const hasFinePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+if(cursor && hasFinePointer){
+  let mx=0,my=0,cx=0,cy=0;
+  document.addEventListener('mousemove', e=>{mx=e.clientX;my=e.clientY});
+  (function loop(){
+    cx += (mx-cx)*.22; cy += (my-cy)*.22;
     cursor.style.transform = `translate(${cx}px,${cy}px) translate(-50%,-50%)`;
-  }
-  requestAnimationFrame(loop);
-})();
-document.querySelectorAll('[data-hover], a, button').forEach(el=>{
-  el.addEventListener('mouseenter', ()=>cursor.classList.add('hover'));
-  el.addEventListener('mouseleave', ()=>cursor.classList.remove('hover'));
-});
-document.addEventListener('mousedown', ()=>cursor.classList.add('click'));
-document.addEventListener('mouseup', ()=>cursor.classList.remove('click'));
+    requestAnimationFrame(loop);
+  })();
+  document.querySelectorAll('[data-hover], a, button').forEach(el=>{
+    el.addEventListener('mouseenter', ()=>cursor.classList.add('hover'));
+    el.addEventListener('mouseleave', ()=>cursor.classList.remove('hover'));
+  });
+  document.addEventListener('mousedown', ()=>cursor.classList.add('click'));
+  document.addEventListener('mouseup', ()=>cursor.classList.remove('click'));
+} else if(cursor){
+  cursor.style.display = 'none';
+}
 
 /* TOPBAR scrolled */
 window.addEventListener('scroll', ()=>{
@@ -410,11 +414,15 @@ if(capacityElement){
   capIO.observe(capacityElement);
 }
 
-/* Parallax suave no hero-bg */
+/* Parallax suave no hero-bg — desativado em mobile pra performance */
 const heroBg = document.querySelector('.hero-bg');
-window.addEventListener('scroll', ()=>{
-  const y = window.scrollY;
-  if(y < 900 && heroBg){
-    heroBg.style.transform = `scale(1.08) translateY(${y*.25}px)`;
-  }
-});
+const isCoarsePointer = window.matchMedia('(pointer:coarse)').matches;
+const isSmallScreen = window.matchMedia('(max-width:768px)').matches;
+if(heroBg && !isCoarsePointer && !isSmallScreen){
+  window.addEventListener('scroll', ()=>{
+    const y = window.scrollY;
+    if(y < 900){
+      heroBg.style.transform = `scale(1.08) translateY(${y*.25}px)`;
+    }
+  }, {passive:true});
+}
