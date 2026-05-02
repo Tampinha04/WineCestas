@@ -309,9 +309,10 @@ if(orderForm){
 }
 
 /* CURSOR */
-/* CURSOR custom — apenas em devices com mouse fino (desktop) */
+/* CURSOR custom — apenas em devices com mouse fino (desktop sem touch) */
 const cursor = document.getElementById('cursor');
-const hasFinePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches;
+const isTouch = ('ontouchstart' in window) || (navigator.maxTouchPoints > 0);
+const hasFinePointer = window.matchMedia('(hover:hover) and (pointer:fine)').matches && !isTouch;
 if(cursor && hasFinePointer){
   let mx=0,my=0,cx=0,cy=0;
   document.addEventListener('mousemove', e=>{mx=e.clientX;my=e.clientY});
@@ -327,7 +328,8 @@ if(cursor && hasFinePointer){
   document.addEventListener('mousedown', ()=>cursor.classList.add('click'));
   document.addEventListener('mouseup', ()=>cursor.classList.remove('click'));
 } else if(cursor){
-  cursor.style.display = 'none';
+  // Em touch devices, remove o elemento totalmente do DOM
+  cursor.remove();
 }
 
 /* TOPBAR scrolled */

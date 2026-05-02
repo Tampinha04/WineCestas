@@ -94,7 +94,7 @@ a,button{cursor:none;font-family:inherit;-webkit-tap-highlight-color:transparent
 }
 .cursor.hover{width:60px;height:60px;background:transparent;border:1px solid #fff;mix-blend-mode:difference}
 .cursor.click{transform:translate(-50%,-50%) scale(.6)}
-@media(hover:none){.cursor{display:none}}
+@media(hover:none),(pointer:coarse){.cursor{display:none!important;visibility:hidden!important}}
 
 /* ---------- TYPOGRAPHY ---------- */
 .serif{font-family:'Cormorant Garamond',serif}
@@ -3081,14 +3081,15 @@ body.order-open .wa-float{
 /* === TOUCH DEVICES — desliga cursor custom + ajustes universais === */
 @media (hover:none), (pointer:coarse){
   html, body { cursor:auto !important; }
-  .cursor { display:none !important; }
+  .cursor { display:none !important; visibility:hidden !important; opacity:0 !important; pointer-events:none !important; }
+  *, *::before, *::after { -webkit-tap-highlight-color:transparent !important; }
   /* Hover states viram active states */
   *:hover { transition-duration:0s !important; }
   /* iOS smooth scroll */
   body { -webkit-overflow-scrolling:touch; }
   /* Tap highlight sutil */
   a, button, [role="button"] {
-    -webkit-tap-highlight-color:rgba(184,147,90,.18);
+    -webkit-tap-highlight-color:transparent;
     touch-action:manipulation;
   }
 }
