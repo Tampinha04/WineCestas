@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/0.9">
+
+  <url>
+    <loc>https://www.winecestas.com.br/</loc>
+    <lastmod>2026-05-05</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://www.winecestas.com.br/img/cesta-01.jpeg</image:loc>
+      <image:title>Cesta Essencia Materna — Wine Cestas</image:title>
+      <image:caption>Cesta clássica para o Dia das Mães</image:caption>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.winecestas.com.br/img/cesta-02.jpeg</image:loc>
+      <image:title>Cesta Feliz Dia Mãe — Wine Cestas</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.winecestas.com.br/img/cesta-03.jpeg</image:loc>
+      <image:title>Cesta Brunch Amor de Mãe — Wine Cestas</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.winecestas.com.br/img/cesta-04.jpeg</image:loc>
+      <image:title>Cesta Mãe o Café Chegou — Wine Cestas</image:title>
+    </image:image>
+    <image:image>
+      <image:loc>https://www.winecestas.com.br/img/cesta-05.jpeg</image:loc>
+      <image:title>Cesta Um Brinde a Minha Mãe — Wine Cestas</image:title>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://www.winecestas.com.br/#produtos</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+  <url>
+    <loc>https://www.winecestas.com.br/#complementares</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+
+  <url>
+    <loc>https://www.winecestas.com.br/#social</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.6</priority>
+  </url>
+
+</urlset>

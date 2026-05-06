@@ -1,0 +1,15 @@
+# Wine Cestas — robots.txt
+# https://www.winecestas.com.br
+
+User-agent: *
+Allow: /
+
+# Sitemap
+Sitemap: https://www.winecestas.com.br/sitemap.xml
+
+# Crawl-delay opcional para bots pesados
+User-agent: AhrefsBot
+Crawl-delay: 5
+
+User-agent: SemrushBot
+Crawl-delay: 5
